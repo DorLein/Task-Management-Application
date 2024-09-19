@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-Ease | Service</title>
+    <link rel="stylesheet" href="{% static 'css/service.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        .navbar ul li:nth-child(3) a {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="icon">
+            <h2 class="logo">Task-Ease</h2>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="{% url 'home' %}">HOME</a></li>
+                <li><a href="{% url 'about' %}">ABOUT</a></li>
+                <li><a href="{% url 'service' %}">SERVICE</a></li>
+                <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                {% if user.username %}
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                {% else %}
+                <li><a href="{% url 'signup' %}">LOGIN</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header> 
+
+    <main class="main">
+        <section class="content">
+            <h1>Our Services :</h1>
+            <hr>
+            <div class="serpage">
+                <!-- Existing contact items -->
+                <div class="contact-item">
+                    <div class="icon"><i class="fas fa-list-check"></i></div>
+                    <div class="description">
+                        <h3>Task Management</h3>
+                        <p>This service allows project managers to create and assign tasks to team members, set deadlines, and track progress. It facilitates communication among team members and provides updates on task progress.</p>
+                    </div>
+                </div>
+    
+                <div class="contact-item">
+                    <div class="icon"><i class="fas fa-business-time"></i></div>
+                    <div class="description">
+                        <h3>Time Tracking</h3>
+                        <p>This service enables project managers to track the time spent on each task by team members. It helps monitor progress, identify issues, and adjust timelines. Team members can easily log their hours worked.</p>
+                    </div>
+                </div>
+    
+                <div class="contact-item">
+                    <div class="icon"><i class="fas fa-arrow-trend-up"></i></div>
+                    <div class="description">
+                        <h3>Resource Management</h3>
+                        <p>This service allows project managers to manage resources such as people, equipment, and materials needed for the project. It helps allocate resources effectively, monitor their usage, and identify potential conflicts.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional contact items -->
+                <div class="contact-item">
+                    <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="description">
+                        <h3>Scheduling</h3>
+                        <p>This service helps in scheduling meetings, deadlines, and other important events. It allows project managers and team members to view and manage their schedules, ensuring that important dates are not missed.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <div class="description">
+                        <h3>Team Collaboration</h3>
+                        <p>This service provides tools for team collaboration, including chat, file sharing, and discussion forums. It enhances communication and cooperation among team members, facilitating a more cohesive working environment.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="description">
+                        <h3>Performance Analytics</h3>
+                        <p>This service provides analytics and reporting tools to track project performance. It includes features like progress reports, performance metrics, and data visualization to help managers make informed decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

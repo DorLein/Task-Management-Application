@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Task-Ease | WorkSpace-3</title>
+  <!-- lien pour connecter la page ws.css a ws.html -->
+  <link rel="stylesheet" href="{% static 'css/ws.css' %}">
+  <!-- script qui permet de faire la fonction capture() -->
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <!-- lien qui permet de ramener des icons / logo d'un siteweb pour la page -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+
+<body>
+
+  <div class="titlename">
+  <!-- titre du ws qui a été stockée dans la base de données du ws  -->
+  <h1>{{ cd.name3|upper  }}</h1>
+  </div>
+  <h4>WorkSpace Description:</h4>
+  <!-- desc du ws qui a été stockée dans la base de données du ws  -->
+  <textarea readonly style="resize: none;">{{ cd.description3 |capfirst }}</textarea><br>
+  
+
+<br><h2>Fill the tasks :</h2><br>
+<!-- Debut Formulaire Tache -->
+
+  <form id="taskForm">
+    
+    <label for="taskName">Task Name:</label>
+    <input type="text" id="taskName" required>
+    <br><br>
+
+    <label for="taskDescription">Task Description:</label>
+    <textarea id="taskDescription" required></textarea>
+    <br><br>
+
+    <label for="taskStatus">Task Status :</label>
+    <select id="taskStatus" required>
+      <option value="new">New</option>
+      <option value="inProgress">In Progress</option>
+      <option value="finished">Finished</option>
+    </select>
+    <br><br>
+
+    <div class="checkbox-group">
+      <label class="mms">Task Members:</label><br>
+      <div class="membersform">
+      <!-- user du site qui a été stockée dans la base de données de users  -->
+      <!-- &nbsp; -->
+      <input type="checkbox" id="member1" value="{{ user.username |capfirst }}">
+      <label for="member1">{{ user.username |capfirst }}</label><br>
+
+      <!-- membre1 du ws qui a été stockée dans la base de données du ws  -->
+      {% if cd.member13 %}
+      <!-- &nbsp; -->
+      <input type="checkbox" id="member2" value="{{ cd.member13 |capfirst }}">
+      <label for="member2">{{ cd.member13 |capfirst }}</label><br>
+      {% endif %}
+
+      <!-- membre2 du ws qui a été stockée dans la base de données du ws  -->
+      {% if cd.member23 %}
+      <!-- &nbsp; -->
+      <input type="checkbox" id="member3" value="{{ cd.member23 |capfirst }}">
+      <label for="member3">{{ cd.member23 |capfirst}}</label><br>
+      {% endif %}
+
+      <!-- membre3 du ws qui a été stockée dans la base de données du ws  -->
+      {% if cd.member33 %}
+      <!-- &nbsp; -->
+      <input type="checkbox" id="member4" value="{{ cd.member33 |capfirst }}">
+      <label for="member4">{{ cd.member33 |capfirst }}</label><br>
+      {% endif %}
+
+      <!-- membre4 du ws qui a été stockée dans la base de données du ws  -->
+      {% if cd.member43 %}
+      <!-- &nbsp; -->
+      <input type="checkbox" id="member5" value="{{ cd.member43 |capfirst }}">
+      <label for="member5">{{ cd.member43 |capfirst }}</label>
+      {% endif %}
+    </div>
+    </div>
+
+    <!-- Bouton qui supprime toutes les tâches -->
+  <div class="btn">
+    <input class="ba" type="submit" value="Add Task">
+    <button class="ba" onclick="deleteAllRows()">Delete All Task</button>
+    <!-- bouton qui permet de prendre en photo le tableau des tâches -->
+    <button class="ba" onclick="capture()">Save A Photo</button>
+  
+
+    <!-- bouton qui permet de modifier le ws en mettant des nouvelles donnéees-->
+    <button class="ba"><a href="{% url 'createws3' %}">Modify The WorkSpace</a></button>
+    
+    <!-- Bouton qui nous redirige vers la bibliotheque espace de travail -->
+    <button class="ba"><a href="{% url 'library' %}">Go to Library</a></button>
+  </div>
+</form>
+
+<!-- Fin Formulaire de tache -->
+
+
+<!-- Element de recherche qui filtre le tableau de tache selon la recherche -->
+  <h2>Search Task Name :</h2>
+  <input type="text" id="searchBar" placeholder="Search by Task Name">
+
+<!-- Partie Cible pour la fonction capture -->
+<div id="element-cible">
+  <h2>Tasks :</h2>
+  <table id="workspace">
+    <thead>
+      
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Members</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Les lignes de tâches seront ajoutées ici dynamiquement -->
+    </tbody>
+  </table>
+</div>
+<!-- Fin de partie cible -->
+
+
+
+<!-- Code Javascript -->
+  <script>
+// Fonction pour capturer l'ecran ( que la partie cible )
+function capture() {
+
+            //Crée un element avec un lien de telechargement de l'image capturée qui partage grace a la bibliotheque html2canvas
+            var elementToCapture = document.getElementById('element-cible');
+            html2canvas(elementToCapture).then(function(canvas) {
+                var link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = 'WorkSpace.png';
+                link.click();
+            });
+        }
+
+// Fin fonction capture
+
+
+
+
+// Barre de Recherche
+
+    // variable qui prend l'id de l'input search by Task Name     
+    var searchBar = document.getElementById("searchBar");
+    // appel d'une fonction filter task quand on fais la saisie sur l'element
+    searchBar.addEventListener("input", filterTasks);
+
+    // filtre les mots de recherche   
+    function filterTasks() {
+      var filter = searchBar.value.toLowerCase();
+      var rows = table.getElementsByTagName("tr");
+
+      for (var i = 1; i < rows.length; i++) {
+        var taskName = rows[i].getElementsByTagName("td")[0].innerHTML.toLowerCase();
+
+        if (taskName.indexOf(filter) > -1) {
+          rows[i].style.display = ""; // Montre les noms de tache qui correspondent a la recherche
+        } else {
+          rows[i].style.display = "none"; // Cache les noms de tache qui correspondent point a la recherche
+        }
+      }
+    }
+
+//  Fin Barre Recherche
+    
+
+
+    // Récupérer le formulaire et le tableau
+    var form = document.getElementById("taskForm");
+    var table = document.getElementById("workspace");
+
+    // Charger les tâches depuis localStorage lors du chargement de la page
+    document.addEventListener("DOMContentLoaded", loadTasks);
+
+    // Ajouter une tâche
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Récupérer les valeurs des champs du formulaire
+      var taskName = document.getElementById("taskName").value;
+      var taskDescription = document.getElementById("taskDescription").value;
+      var taskStatus = document.getElementById("taskStatus").value;
+      var members = [];
+      var checkboxes = document.querySelectorAll(".checkbox-group input[type='checkbox']:checked");
+
+      for (var i = 0; i < checkboxes.length; i++) {
+        members.push(checkboxes[i].value);
+      }
+
+      // Créer un objet avec les données de la tâche
+      var rowData = {
+        taskName: taskName,
+        taskDescription: taskDescription,
+        taskStatus: taskStatus,
+        members: members.join(", ")
+      };
+
+      // Ajouter une nouvelle ligne au tableau avec les données de la tâche
+      var newRow = table.insertRow();
+      var cell1 = newRow.insertCell();
+      var cell2 = newRow.insertCell();
+      var cell3 = newRow.insertCell();
+      var cell4 = newRow.insertCell();
+      var cell5 = newRow.insertCell();
+      cell1.innerHTML = rowData.taskName;
+      cell2.innerHTML = rowData.taskDescription;
+      cell3.innerHTML = rowData.taskStatus;
+      cell4.innerHTML = rowData.members;
+      cell5.innerHTML = '<button class="ba" onclick="editRow(this)">Edit</button> <button class="ba" onclick="deleteRow(this)">Delete</button>';
+
+      // Réinitialiser les valeurs du formulaire
+      form.reset();
+
+      // Sauvegarder les tâches dans localStorage
+      saveTasks();
+    });
+
+    // Supprimer une ligne du tableau
+    function deleteRow(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+
+      // Sauvegarder les tâches dans localStorage
+      saveTasks();
+    }
+
+    // Modifier une ligne du tableau
+    function editRow(button) {
+      var row = button.parentNode.parentNode;
+      var cells = row.getElementsByTagName("td");
+
+      var taskName = cells[0].innerHTML;
+      var taskDescription = cells[1].innerHTML;
+      var taskStatus = cells[2].innerHTML;
+      var members = cells[3].innerHTML.split(", ");
+
+      document.getElementById("taskName").value = taskName;
+      document.getElementById("taskDescription").value = taskDescription;
+      document.getElementById("taskStatus").value = taskStatus;
+
+      var checkboxes = document.querySelectorAll(".checkbox-group input[type='checkbox']");
+
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (members.includes(checkboxes[i].value)) {
+          checkboxes[i].checked = true;
+        } else {
+          checkboxes[i].checked = false;
+        }
+      }
+
+      // Supprimer la ligne existante
+      row.parentNode.removeChild(row);
+
+      // Sauvegarder les tâches dans localStorage
+      saveTasks();
+    }
+
+
+
+    // Supprimer toutes les tâches
+    function deleteAllRows() {
+      var rowCount = table.rows.length;
+
+      for (var i = rowCount - 1; i > 0; i--) {
+        table.deleteRow(i);
+      }
+
+      // Sauvegarder les tâches dans localStorage
+      saveTasks();
+    }
+
+
+    // Sauvegarder les tâches dans localStorage
+    function saveTasks() {
+      var tasks = [];
+      var rowCount = table.rows.length;
+
+      for (var i = 1; i < rowCount; i++) {
+        var row = table.rows[i];
+        var cells = row.getElementsByTagName("td");
+
+        var taskName = cells[0].innerHTML;
+        var taskDescription = cells[1].innerHTML;
+        var taskStatus = cells[2].innerHTML;
+        var members = cells[3].innerHTML;
+
+        tasks.push({
+          taskName: taskName,
+          taskDescription: taskDescription,
+          taskStatus: taskStatus,
+          members: members
+        });
+      }
+
+      localStorage.setItem("{{ user.username }}_tasks3", JSON.stringify(tasks));
+    }
+
+    
+    // Charger les tâches depuis localStorage
+    function loadTasks() {
+      var tasks = localStorage.getItem("{{ user.username }}_tasks3");
+
+      if (tasks) {
+        tasks = JSON.parse(tasks);
+
+        for (var i = 0; i < tasks.length; i++) {
+          var task = tasks[i];
+
+          var newRow = table.insertRow();
+          var cell1 = newRow.insertCell();
+          var cell2 = newRow.insertCell();
+          var cell3 = newRow.insertCell();
+          var cell4 = newRow.insertCell();
+          var cell5 = newRow.insertCell();
+          cell1.innerHTML = task.taskName;
+          cell2.innerHTML = task.taskDescription;
+          cell3.innerHTML = task.taskStatus;
+          cell4.innerHTML = task.members;
+          cell5.innerHTML = '<button class="ba" onclick="editRow(this)">Edit</button> <button class="ba" onclick="deleteRow(this)">Delete</button>';
+        }
+      }
+    }
+
+  </script>
+</body>
+</html>

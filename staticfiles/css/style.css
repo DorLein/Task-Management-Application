@@ -1,0 +1,84 @@
+/* Styles for the navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+}
+
+.navbar .logo {
+    color: #fff;
+    margin: 0;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar ul li a:hover {
+    color: #B59410;
+}
+
+/* Styles for the content */
+.content {
+    padding: 20px;
+}
+
+.content h1 {
+    color: #333;
+}
+
+.content .par4 {
+    color: #666;
+}
+
+/* Styles for the button */
+.depbtn {
+    margin-top: 20px;
+}
+
+.depbtn button {
+    background-color: #B59410;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.depbtn button:hover {
+    background-color: #8C6A08;
+}
+
+/* Styles for the image */
+.imageteam {
+    margin-top: 20px;
+}
+
+.img-team {
+    width: 100%;
+    height: auto;
+}
+
+/* Additional styles */
+.an a {
+    text-decoration: none;
+    color: #000;
+}
+
+.an a:hover {
+    color: #B59410;
+}

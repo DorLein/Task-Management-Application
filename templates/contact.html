@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task-Ease | Contact</title>
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        /* Ajoutez cette règle pour changer la couleur du texte "ABOUT" */
+        .navbar ul li:nth-child(4) a {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Task-Ease</h2>
+            </div>
+                    
+            <ul>
+                <li><a href="{% url 'home' %}">HOME</a></li>
+                <li><a href="{% url 'about' %}">ABOUT</a></li>
+                <li><a href="{% url 'service' %}">SERVICE</a></li>
+                <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}" class="btn-login">LOGOUT</a></li>
+                {% else %}
+                    <li><a href="{% url 'signin' %}" class="btn-login">LOGIN</a></li>
+                {% endif %}
+            </ul>
+        </div> 
+
+        <div class="content">
+            <h1><div class="about">Contact Us :</div></h1>
+            <hr>
+            <p class="par3">We are available Monday to Friday from 9am to 5pm</p>
+
+            <section class="contact-info">
+                <div class="contact-item">
+                    <div class="icon"><i class="fas fa-phone"></i></div>
+                    <div class="details">
+                        <h3>Phone</h3>
+                        <p>If you want to contact us via calling, use one of these numbers:</p>
+                        <p class="cc">0613119065</p>
+                        <p class="cc">0652040251</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                    <div class="details">
+                        <h3>Email</h3>
+                        <p>If you want to contact us via email, use one of these addresses:</p>
+                        <p class="cc">abdellah.salahi@gmail.com</p>
+                        <p class="cc">alidakkaoui07@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="icon"><i class="fas fa-message"></i></div>
+                    <div class="details">
+                        <h3>Social Media</h3>
+                        <p>If you want to contact us via messaging, you can find us on:</p>
+                        <p class="cc">WhatsApp: whatsapp.com</p>
+                        <p class="cc">Facebook: facebook.com</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

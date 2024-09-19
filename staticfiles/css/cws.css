@@ -1,0 +1,57 @@
+h1{
+    color: #B59410;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url("../img/bgs.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.buttonc {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 30px;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #B59410;
+  color: #FFFFFF;
+  border-radius: 11px;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+
+}
+
+.buttonc:hover {
+  background-color: #fafaf8;
+}
+
+.buttonc a{
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.buttonc a:hover {
+  text-decoration: none;
+  color: #B59410;
+  font-weight: 600;
+}
+
+.btnrow {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}

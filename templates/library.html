@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task-Ease | Library</title>
+  <link rel="stylesheet" href="{% static 'css/library.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Library WorkSpace :</h1>
+    <hr>
+    <h2>Join a Workspace :</h2>
+    {% if 'ws_data3' in request.session %}
+    <div class="btnrow">
+    <button class="buttonc"><a href="{% url 'ws' %}">WorkSpace</a></button>
+    <button class="buttonc"><a href="{% url 'ws2' %}">WorkSpace2</a></button>
+    <button class="buttonc"><a href="{% url 'ws3' %}">WorkSpace3</a></button>
+    <button class="buttonc" onclick="showAlert4()"><a href="#">WorkSpace4 <i class="fa-solid fa-lock" style="color: #000000;"></i></a></button>   
+    <button class="buttonc"><a href="{% url 'home' %}">Back</a></button>
+    </div>
+    {% elif 'ws_data2' in request.session %}
+    <div class="btnrow">
+    <button class="buttonc"><a href="{% url 'ws' %}">WorkSpace</a></button>
+    <button class="buttonc"><a href="{% url 'ws2' %}">WorkSpace2</a></button>
+    <button class="buttonc" onclick="showAlert3()"><a href="#">WorkSpace3 <i class="fa-solid fa-lock" style="color: #000000;"></i></a></button>
+    <button class="buttonc" onclick="showAlert4()"><a href="#">WorkSpace4 <i class="fa-solid fa-lock" style="color: #000000;"></i></a></button></button>
+    <button class="buttonc"><a href="{% url 'home' %}">Back</a></button>
+    </div>
+    {% else %}
+    <div class="btnrow">
+    <button class="buttonc"><a href="{% url 'ws' %}">WorkSpace</a></button>
+    <button class="buttonc" onclick="showAlert2()"><a href="#">WorkSpace2 <i class="fa-solid fa-lock" style="color: #000000;"></i></a></button>
+    <button class="buttonc" onclick="showAlert3()"><a href="#">WorkSpace3 <i class="fa-solid fa-lock" style="color: #000000;"></i></a></button>
+    <button class="buttonc" onclick="showAlert4()"><a href="#">WorkSpace4 <i class="fa-solid fa-lock" style="color: #000000;"></i></a></button></button>
+    <button class="buttonc"><a href="{% url 'home' %}">Back</a></button>
+    </div>
+    {% endif %}               
+  </div>
+
+
+
+  <script>
+    function showAlert2() {
+      alert("To access Workspace2, you need to create it.");
+    }
+    function showAlert3() {
+      alert("To access Workspace3, you need to create it.");
+    }
+    function showAlert4() {
+      alert("To access Workspace4, you need to make a payment.");
+    }
+  </script>
+</body>
+</html>

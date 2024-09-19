@@ -1,0 +1,111 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.main {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #343a40;
+    padding: 20px;
+    border-bottom: 4px solid #ffc107;
+}
+
+.navbar .logo {
+    color: #fff;
+    margin: 0;
+    font-size: 32px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #ffc107;
+}
+
+/* Content Styles */
+.content {
+    padding: 20px;
+}
+
+.content h1 {
+    color: #343a40;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.content .par3, .content .about {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Service Section Styles */
+.serpage {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between items */
+    margin-top: 50px;
+    justify-content: space-between; /* Ensures items are spaced correctly */
+}
+
+.contact-item {
+    flex: 1 1 calc(33.333% - 20px); /* Adjusts width to fit three items per row */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item .icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #ffc107;
+}
+
+.contact-item h3 {
+    color: #343a40;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    color: #555;
+    font-size: 16px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .contact-item {
+        flex: 1 1 100%; /* Stacks items vertically */
+    }
+}

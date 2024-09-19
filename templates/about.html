@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task-Ease | About</title>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        /* Ajoutez cette règle pour changer la couleur du texte "ABOUT" */
+        .navbar ul li:nth-child(2) a {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Task-Ease</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="{% url 'home' %}">HOME</a></li>
+                    <li><a href="{% url 'about' %}">ABOUT</a></li>
+                    <li><a href="{% url 'service' %}">SERVICE</a></li>
+                    <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                    {% if user.username %}
+                    <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                    {% else %}
+                    <li><a href="{% url 'signup' %}">LOGIN</a></li>
+                    {% endif %}               
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1 class="about">About Us :</h1>
+            <hr>
+        
+            <p class="par2">
+                When it comes to a comprehensive project management solution that caters to all your professional needs, our website, with its impressive array of features and user-friendly interface, is the long-awaited answer you've been seeking; indeed, our unwavering commitment to excellence and proven expertise in the field make us the perfect partner to accompany you throughout your projects, from initial planning to final delivery, ensuring optimal efficiency and seamless collaboration among all stakeholders; moreover, our dedicated team is constantly receptive to your feedback and suggestions, continuously improving our service to provide an unparalleled user experience, enabling you to stay focused on what truly matters: achieving your professional goals with success.
+            </p>
+        
+            <section class="team">
+                <h2>Our Team :</h2>
+                <hr>
+                <div class="team-member">
+                    <h3>Ali Dakkaoui</h3>
+                    <p>Back-end Developer</p>
+                </div>
+                <div class="team-member">
+                    <h3>Abdellah Salahi</h3>
+                    <p>Front-end Developer</p>
+                </div>
+            </section>
+        </div>
+        
+        
+    </div>
+</body>
+</html>

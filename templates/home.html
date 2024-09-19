@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-Ease | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        /* Ajoutez cette règle pour changer la couleur du texte "HOME" */
+        .navbar ul li:first-child a {
+            color: #ffc107;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Task-Ease</h2>
+            </div>
+                    
+            <ul>
+                <li><a href="{% url 'home' %}">HOME</a></li>
+                <li><a href="{% url 'about' %}">ABOUT</a></li>
+                <li><a href="{% url 'service' %}">SERVICE</a></li>
+                <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}" class="btn-login">LOGOUT</a></li>
+                {% else %}
+                    <li><a href="{% url 'signin' %}" class="btn-login">LOGIN</a></li>
+                {% endif %}
+            </ul>
+        </div> 
+        <div class="content">
+            <div class="hero">
+                {% if user.is_authenticated %}
+                <h1>Welcome to our Website, {{ user.username|capfirst }}!</h1>
+                {% else %}
+                    <h1>Welcome Guest</h1>
+                {% endif %}
+                <p class="description">
+                    Welcome to Project Manager, the project management website that allows you to effortlessly oversee your projects. With Project Manager, you can create project workspaces where you can manage your projects, including three free workspaces. You can also add members (maximum of 5 people, including yourself) to the workspace. Within the workspace, you can create tasks, assign them to members, track their progress, and modify their descriptions. Additionally, you can capture photos of the task board to share with colleagues who are included in the project. Simplify your project management with Project Manager today!
+                </p>
+                <h2>Actions :</h2>
+                <div class="workspace">
+                    {% if 'ws_data3' in request.session %}
+                        <div class="depbtnh">
+                            <button class="an"><a class="test" href="{% url 'createws4' %}" style="text-decoration: none;">Create your Last WorkSpace</a></button> 
+                            <button class="an"><a class="test" href="{% url 'library' %}" style="text-decoration: none;">Enter the Library WorkSpaces</a></button> 
+                        </div>
+                    {% elif 'ws_data2' in request.session %}
+                        <div class="depbtnh">
+                            <button class="an"><a class="test" href="{% url 'createws3' %}" style="text-decoration: none;">Createyour Third WorkSpace</a></button> 
+                            <button class="an"><a class="test" href="{% url 'library' %}" style="text-decoration: none;">Enter the Library WorkSpaces</a></button> 
+                        </div>
+                    {% elif 'ws_data' in request.session %}
+                        <div class="depbtnh">
+                            <button class="an"><a class="test" href="{% url 'createws2' %}" style="text-decoration: none;">Create your Second WorkSpace</a></button> 
+                            <button class="an"><a class="test" href="{% url 'library' %}" style="text-decoration: none;">Enter the Library WorkSpaces</a></button> 
+                        </div>
+                    {% else %}
+                        <div class="depbtnh">
+                            <button class="an"><a class="test" href="{% url 'createws' %}" style="text-decoration: none;">Create your First WorkSpace</a></button> 
+                            <button class="an" onclick="showAlert()" style="text-decoration: none;">Enter the Library WorkSpaces</button> 
+                        </div>
+                    {% endif %}
+                </div>
+                <h2>Main Features of this Web Application :</h2>
+
+            </div>
+
+            <!-- Features Section -->
+            <div class="features">
+                
+                <div class="feature">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <h2>Task Management</h2>
+                    <p>Effortlessly manage and track tasks with a user-friendly interface that adapts to your needs.</p>
+                </div>
+                <div class="feature">
+                    <i class="fa-solid fa-users"></i>
+                    <h2>Team Collaboration</h2>
+                    <p>Collaborate seamlessly with your team members, assigning tasks and sharing updates in real-time.</p>
+                </div>
+                <div class="feature">
+                    <i class="fa-solid fa-photo-video"></i>
+                    <h2>Task Photos</h2>
+                    <p>Capture and share photos of your task board to keep everyone in the loop with visual updates.</p>
+                </div>
+            </div>
+
+            <!-- Testimonial Section -->
+            <div class="testimonial">
+                <h2>What Our Users Say :</h2>
+                <div class="quote">
+                    <blockquote>"Task-Ease has revolutionized the way we manage our projects. The intuitive interface and collaboration tools have made our team more productive than ever."</blockquote>
+                    <p class="author">- Ahmed Moor, Project Manager</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAlert() {
+            alert("You need to create a workspace to have access !");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task-Ease | CreateWS</title>
+    <link rel="stylesheet" href="{% static 'css/cws.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <div class="main">
+        <form action="{% url 'ws' %}" method="post">
+            {% csrf_token %} 
+            <div class="form-container">
+                <h2>Create Your First Workspace :</h2>
+                <hr>
+                <div>
+                    <label for="name">Title:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="description-container">
+                    <label for="description">Description:</label>
+                    <textarea type="text" id="description" name="description" rows="4" placeholder="Enter description" required></textarea>
+                </div>
+                
+                <div class="membernames">
+                    <h3>Add Members (Optional) :</h3><br>
+                    <label for="member1">Member 1:</label>
+                    <input type="text" id="member1" name="member1">
+    
+                    <label for="member2">Member 2:</label>
+                    <input type="text" id="member2" name="member2">
+    
+                    <label for="member3">Member 3:</label>
+                    <input type="text" id="member3" name="member3">
+    
+                    <label for="member4">Member 4:</label>
+                    <input type="text" id="member4" name="member4">
+                </div>
+            
+                <div class="button-container">
+                    <button class="an"><a href="{% url 'home' %}">Exit</a></button>
+                    <button type="submit" class="an">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

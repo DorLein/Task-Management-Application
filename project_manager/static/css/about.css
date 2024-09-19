@@ -1,0 +1,114 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.main {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Styles for the navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #343a40;
+    padding: 20px;
+    border-bottom: 4px solid #ffc107;
+}
+
+.navbar .logo {
+    color: #fff;
+    margin: 0;
+    font-size: 32px;
+}
+
+.navbar .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .menu ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar .menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.navbar .menu ul li a:hover {
+    color: #ffc107;
+}
+
+/* Styles for the content */
+.content {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.content h1 {
+    color: #343a40;
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-align: center; /* Centered the main title */
+}
+
+.content .about {
+    color: #343a40;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.content .par2 {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 20px;
+    text-align: justify; /* Added justification for better text alignment */
+}
+
+/* Styles for the team section */
+.team {
+    margin-top: 40px;
+}
+
+.team h2 {
+    color: #343a40;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.team-member {
+    text-align: center;
+    padding: 15px; /* Added padding for spacing */
+    margin: 15px 0;
+    background-color: #ffffff; /* Added background color for contrast */
+    border-radius: 8px; /* Rounded corners for better aesthetics */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Removed the img styling */
+
+/* Team member titles and roles */
+.team-member h3 {
+    color: #343a40;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.team-member p {
+    color: #555;
+    font-size: 16px;
+}
